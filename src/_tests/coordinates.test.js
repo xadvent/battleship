@@ -13,7 +13,7 @@ describe('getCoordinatesFromClassList', () => {
         expect(getCoordinatesFromClassList(["R69", "C420"])).toStrictEqual([69, 420])
     })
 
-    test('Final test.', () => {
+    test('Final test', () => {
         let body = document.querySelector('body')
         body.classList.add('r3')
         body.classList.add('c2')

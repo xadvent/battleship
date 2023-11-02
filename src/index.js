@@ -1,4 +1,4 @@
 import './style.css'
-import { createBoards } from './onload/loadElements.js'
+import loadElements from './onload/loadElements'
 
-createBoards()
+loadElements()
