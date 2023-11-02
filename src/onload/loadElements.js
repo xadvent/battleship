@@ -8,7 +8,7 @@ function createBoards() {
 
     const list = [playerBoard, opponentBoard];
     let player = false;
-    list.forEach(person => {
+    list.forEach(user => {
         player = !player
         for (let i = 1; i <= 10; i++) {
             for (let x = 1; x <= 10; x++) {
@@ -20,14 +20,13 @@ function createBoards() {
                 } else {
                     box.classList.add('opponent-square');
                 }
-                person.appendChild(box);
+                user.appendChild(box);
             }
         }
     })
 }
 
-export function placeShipsRandomly(option) {
-    const board = document.getElementById(option);
+export function placeShipsRandomly() {
     // This function will place ships randomly on the board on each load.
 }
 

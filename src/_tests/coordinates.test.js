@@ -2,26 +2,61 @@
  * @jest-environment jsdom
  */
 
-import { getCoordinatesFromClassList } from "../path-finding/coordinates"
+import { getCoordinatesFromClassList, findSquare} from "../path-finding/coordinates"
+import loadElements from "../onload/loadElements"
+
+beforeAll(() => {
+    document.body.innerHTML =
+        `<div id="container">
+        <div id="player"></div>
+        <div id="opponent"></div>
+    </div>
+    <div id="legend">
+        <div class="legend-info">
+            <img id="empty-legend" src="" alt="symbol for empty">
+            <p class="legend-label">Empty waters</p>
+        </div>
+        <div class="legend-info">
+            <img id="hit-legend" src="" alt="symbol for hit">
+            <p class="legend-label">Ship hit!</p>
+        </div>
+        <div class="legend-info">
+            <img id="killed-legend" src="" alt="symbol for killed">
+            <p class="legend-label">Ship sunk!</p>
+        </div>
+    </div>`
+
+    loadElements();
+})
 
 describe('getCoordinatesFromClassList', () => {
     test('verify coordinatePuller', () => {
-        expect(getCoordinatesFromClassList(['r3', 'c2'])).toStrictEqual([3, 2])
+        expect(getCoordinatesFromClassList(['r3', 'c2'])).toStrictEqual([3, 2]);
     })
 
     test('Using larger nums', () => {
-        expect(getCoordinatesFromClassList(["R69", "C420"])).toStrictEqual([69, 420])
+        expect(getCoordinatesFromClassList(["R69", "C420"])).toStrictEqual([69, 420]);
     })
 
     test('Final test', () => {
-        let body = document.querySelector('body')
-        body.classList.add('r3')
-        body.classList.add('c2')
-        body.classList.add('body')
-        expect(getCoordinatesFromClassList(body.classList)).toStrictEqual([3, 2])
+        const coordinate = document.querySelector('.r3.c2');
+        expect(getCoordinatesFromClassList(coordinate.classList)).toStrictEqual([3, 2]);
     })
 })
 
-describe('placeShipsRandomly', () =>{
+describe('returnSquare', () => {
+    test('return square at ([3,9])', () => {
+        let square = findSquare([3, 9]);
+        square = getCoordinatesFromClassList(square.classList);
+        expect(square).toEqual(getCoordinatesFromClassList(['r3', 'c9']));
+    })
+
+    test('Expecting to be null [3,11]', () => {
+        let square = findSquare([3, 11]);
+        expect(square).toEqual(null);
+    })
+})
+
+describe('placeShipsRandomly', () => {
 
 })
