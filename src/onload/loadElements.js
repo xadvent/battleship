@@ -11,7 +11,6 @@ function createBoards() {
     list.forEach(person => {
         player = !player
         for (let i = 1; i <= 10; i++) {
-            let row = document.createElement('div');
             for (let x = 1; x <= 10; x++) {
                 let box = document.createElement('div');
                 box.classList.add('r' + i);
@@ -21,9 +20,8 @@ function createBoards() {
                 } else {
                     box.classList.add('opponent-square');
                 }
-                row.appendChild(box);
+                person.appendChild(box);
             }
-            person.appendChild(row);
         }
     })
 }
