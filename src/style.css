@@ -88,3 +88,8 @@ body {
 #player>div:hover, #opponent>div:hover {
     background-color: rgb(149, 175, 216);
 }
+
+#player>.hit,
+#opponent>.hit {
+    background-color: rgba(255, 0, 0, 0.673);
+}

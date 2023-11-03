@@ -3,9 +3,15 @@ export function getCoordinatesFromClassList(lst) {
         return [parseInt(row, 10), parseInt(column, 10)];
 }
 
-export function findSquare(arr) {
+export function findSquare(arr, user) {
+        user = user || false
         const [x, y] = [arr[0], arr[1]];
-        let result = document.querySelector(`.r${x}.c${y}`);
+        let result;
+        if (user) {
+                result = document.querySelector(`#${user}>.r${x}.c${y}`);
+        } else {
+                result = document.querySelector(`.r${x}.c${y}`);
+        }
         return result || null;
 }
 
@@ -16,20 +22,17 @@ export function addPlayerListeners() {
         })
 }
 
-function verifySquare(coordinateClasses){
+export function verifySquare(coordinateClasses) {
         let squareStates = ['hit', 'empty', 'killed']
-        for(let x of coordinateClasses){
+        for (let x of coordinateClasses) {
                 if (squareStates.includes(x)) return null
         }
         return true
 }
 
+// Placeholder function
 function makeTurn(event) {
         const coordinate = getCoordinatesFromClassList(event.target.classList);
 
-        // Replace this with error message handling in the future!
-        if(!verifySquare(event.target.classList)) return null
-
-        // Will have something like: opponent.register(coordinate)
-        // For now, this is just a filler
+        if (!verifySquare(event.target.classList)) return null
 }

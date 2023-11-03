@@ -4,6 +4,10 @@ import Player from "./player";
 export default class User extends Player {
     constructor(locations) {
         super(locations);
+        this.user = 'player'
     }
-    
+
+    takeTurn(){
+        addPlayerListeners()
+    }
 }
