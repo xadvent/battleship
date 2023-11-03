@@ -22,13 +22,6 @@ export function addPlayerListeners() {
         })
 }
 
-export function verifySquare(coordinateClasses) {
-        let squareStates = ['hit', 'empty', 'killed']
-        for (let x of coordinateClasses) {
-                if (squareStates.includes(x)) return null
-        }
-        return true
-}
 
 // Placeholder function
 function makeTurn(event) {

@@ -56,7 +56,3 @@ describe('returnSquare', () => {
         expect(square).toEqual(null);
     })
 })
-
-describe('placeShipsRandomly', () => {
-
-})
