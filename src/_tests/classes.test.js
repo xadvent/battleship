@@ -93,8 +93,6 @@ describe('Player', () => {
 describe('Computer', () => {
     const board = new GameBoard()
     const computer = Computer(board)
-    board.placeShip([1, 1], 1)
-    board.placeShip([1, 2], 1)
 
     test('Computer should make random move', () => {
         computer.attack()
