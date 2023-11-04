@@ -1,14 +1,17 @@
 export default class Ship {
-    constructor(size) {
-        this.size = size;
-        this.damage = 0;
+    constructor(coordinates) {
+        this.coordinates = coordinates
+        this.hits = new Array(coordinates.length).fill(false)
     }
 
-    hit() {
-        ++this.damage;
+    hit(coordinate) {
+        const index = this.coordinates.findIndex(coord => coord[0] === coordinate[0] && coord[1] === coordinate[1]);
+        if(index > -1){
+            this.hits[index] = true
+        }
     }
 
     isSunk() {
-        return this.damage >= this.size ? true : false
+        return this.hits.every(hit => hit)
     }
 }

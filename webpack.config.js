@@ -14,7 +14,7 @@ module.exports = {
         new HtmlWebpackPlugin({
             title: 'Battleship',
             sourceMap: true,
-            template: './src/index.html',
+            template: './src/index.html'
         }),
     ],
     module: {
