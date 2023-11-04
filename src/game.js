@@ -14,7 +14,7 @@ playerBoard.placeShip([1,1], 1)
 computerBoard.placeShip([5,5], 1)
 
 export default () => {
-    while (!playerBoard.allSunk() || !computerBoard.allSunk()) {
+    while (playerBoard.allSunk() || computerBoard.allSunk()) {
 
     }
 }

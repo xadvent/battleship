@@ -8,17 +8,17 @@ export function Player(otherBoard) {
     }
 }
 
-export function Computer(otherBoard){
-    let previousAttacks = [];
+export function Computer(otherBoard) {
+    let previousAttacks = new Set;
 
     const attack = () => {
         let coordinates = [];
-        while(previousAttacks.includes(coordinates) || coordinates == []){
+        while (previousAttacks.has(coordinates) || coordinates.length == 0) {
             coordinates = [Math.floor(Math.random() * 10), Math.floor(Math.random() * 10)];
         }
 
         otherBoard.receiveAttack(coordinates);
-        previousAttacks.push(coordinates);
+        previousAttacks.add(coordinates);
     }
 
     return {
