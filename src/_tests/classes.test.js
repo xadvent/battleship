@@ -1,5 +1,6 @@
 import GameBoard from "../classes/Gameboard";
 import Ship from "../classes/Ship";
+import { Player, Computer } from "../classes/users";
 
 describe("Ship Class", () => {
     const ship = new Ship(3)
@@ -39,12 +40,13 @@ describe('Gameboard.js', () => {
     })
 
     test('Missed shots should be recorded', () => {
-        let shots = [[2, 2], [3, 3], 4, 4]
+        const newBoard = new GameBoard()
+        let shots = [[2, 2], [3, 3], [4, 4]]
         shots.forEach(shot => {
-            board.receiveAttack(shot)
+            newBoard.receiveAttack(shot)
         })
 
-        expect(board.shots).toStrictEqual(shots)
+        expect(newBoard.shots).toStrictEqual(shots)
     })
 
     test('Ship should be hit twice and sunk', () => {
@@ -55,21 +57,49 @@ describe('Gameboard.js', () => {
         expect(board.coordinates[[5, 5]].isSunk()).toBe(true)
     })
 
-    test('allSunk == false; Ships still alive', () => {
+    test('allSunk == false: Ships still alive', () => {
         const newBoard = new GameBoard();
-        newBoard.placeShip([1,1], 0) // Simulating sunk ship
-        newBoard.placeShip([4,4], 2)
+        newBoard.placeShip([1, 1], 0) // Simulating sunk ship
+        newBoard.placeShip([4, 4], 1)
 
         expect(newBoard.allSunk()).toBe(false)
     })
 
-    test('allSunk == true; No ships left', () => {
+    test('allSunk == true: No ships left', () => {
         const newBoard = new GameBoard();
-        newBoard.placeShip([1,1], 0) // Simulating sunk ship
-        newBoard.placeShip([4,4], 0)
-        newBoard.placeShip([6,4], 0)
-        newBoard.placeShip([7,4], 0)
+        newBoard.placeShip([1, 1], 0) // Simulating sunk ship
+        newBoard.placeShip([4, 4], 0)
+        newBoard.placeShip([6, 4], 0)
+        newBoard.placeShip([7, 4], 0)
 
         expect(newBoard.allSunk()).toBe(true)
+    })
+})
+
+describe('Player', () => {
+    const board = new GameBoard()
+    board.placeShip([1, 1], 1)
+    board.placeShip([1, 2], 1)
+    const player = Player(board)
+
+    test('player should attack board', () => {
+        player.attack([1, 2])
+        player.attack([1, 1])
+        expect(board.allSunk()).toBe(true)
+    })
+
+})
+
+describe('Computer', () => {
+    const board = new GameBoard()
+    const computer = Computer(board)
+    board.placeShip([1, 1], 1)
+    board.placeShip([1, 2], 1)
+
+    test('Computer should make random move', () => {
+        computer.attack()
+        computer.attack()
+
+        expect(board.shots).toHaveLength(2)
     })
 })

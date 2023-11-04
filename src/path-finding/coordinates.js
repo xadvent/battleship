@@ -22,7 +22,6 @@ export function addPlayerListeners() {
         })
 }
 
-
 // Placeholder function
 function makeTurn(event) {
         const coordinate = getCoordinatesFromClassList(event.target.classList);
