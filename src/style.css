@@ -1,7 +1,9 @@
 :root {
-    --main-colour: 0;
-    --secondary-colour: 0;
-    --background-color: 0;
+    --sea-border: rgb(37, 108, 201);
+    --sea-colour: rgb(92, 132, 196);
+    --hit: rgba(255, 0, 0, 0.673);
+    --miss: rgba(101, 102, 102, 0.673);
+    --player-ship: aqua;
 }
 
 * {
@@ -14,7 +16,8 @@ body {
     padding: 0;
 }
 
-body {
+body,
+#gameContainer {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -23,10 +26,9 @@ body {
     gap: 20px;
 }
 
-#header {
-    height: 50px;
-    width: 100vw;
-    border-bottom: 1px solid black;
+#gameContainer>* {
+    position: relative;
+    top: -10px;
 }
 
 #container {
@@ -36,22 +38,38 @@ body {
     grid-template-columns: 50px 1fr 1fr 50px;
 }
 
-#player {
+.boxP {
     grid-column: 2;
 }
-#opponent {
+
+.boxO {
     grid-column: 3;
 }
 
-#player, #opponent {
+#player,
+#opponent,
+.boxP,
+.boxO {
     justify-self: center;
     align-self: center;
+}
+
+.boxP>p,
+.boxO>p {
+    position: relative;
+    top: -20px;
+}
+
+#turn {
+    display: relative;
+    top: 20px;
 }
 
 #legend {
     height: 100px;
     display: flex;
     gap: 5vw;
+    margin-top: -10px;
 }
 
 
@@ -67,7 +85,8 @@ body {
     width: auto;
 }
 
-#player, #opponent {
+#player,
+#opponent {
     max-width: 500px;
     max-height: 500px;
     min-width: 500px;
@@ -77,22 +96,25 @@ body {
     grid-template-rows: repeat(10, 1fr);
     grid-template-columns: repeat(10, 1fr);
     gap: 2px;
-    background-color: rgb(37, 108, 201);
+    background-color: var(--sea-border);
     position: relative;
-    top: -25px;
+    top: -30px;
 }
 
-#player>div, #opponent>div {
-    background-color: rgb(92, 132, 196);
+#player>div,
+#opponent>div {
+    background-color: var(--sea-colour);
 
 }
 
-#player>div:hover, #opponent>div:hover {
+#player>div:hover,
+#opponent>div:hover {
     background-color: rgb(149, 175, 216);
     scale: 1.08;
 }
 
-#player>div:active, #opponent>div:active {
+#player>div:active,
+#opponent>div:active {
     background-color: rgb(99, 116, 144);
     scale: 0.98;
 }
@@ -102,16 +124,16 @@ body {
 #opponent>.hit,
 #player>.player-ship.hit:hover,
 #opponent>.hit:hover {
-    background-color: rgba(255, 0, 0, 0.673);
+    background-color: var(--hit);
 }
 
 #player>.miss:hover,
 #opponent>.miss:hover,
 #player>.miss,
-#opponent>.miss{
-    background-color: rgba(146, 154, 153, 0.673);
+#opponent>.miss {
+    background-color: var(--miss);
 }
 
 #player>.player-ship {
-    background-color: aqua;
+    background-color: var(--player-ship);
 }

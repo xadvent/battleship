@@ -32,6 +32,7 @@ export default () => {
         });
 
         computerBoard.displayHits()
+
         turn = 'computer';
         displayTurn.textContent = "Opponent's Turn..."
 
