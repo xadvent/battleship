@@ -93,3 +93,8 @@ body {
 #opponent>.hit {
     background-color: rgba(255, 0, 0, 0.673);
 }
+
+#player>.miss,
+#opponent>.miss{
+    background-color: rgba(146, 154, 153, 0.673);
+}

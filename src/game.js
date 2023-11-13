@@ -6,12 +6,11 @@ export default () => {
     const playerBoard = new GameBoard();
     const computerBoard = new GameBoard();
 
-    // Assigning Opponents with the 'new' keyword
     const player = Player(computerBoard);
     const computer = Computer(playerBoard);
 
-    // Assuming placeShip needs only the starting coordinate and length
-    playerBoard.placeShip([1, 1], [1, 2]);
+    // Temporary placements to test
+    playerBoard.placeShip([4, 4], [1, 4]);
     computerBoard.placeShip([1, 1], [1, 2]);
 
     let turn = 'player';
@@ -26,58 +25,46 @@ export default () => {
         const coordinate = getCoordinatesFromClassList(event.target.classList);
         player.attack(coordinate);
 
-        // Unbinding click event to prevent multiple moves in a single turn
         document.querySelectorAll('.opponent-square').forEach(square => {
             square.removeEventListener('click', makeTurn);
         });
 
-        updateBoardDisplay(computerBoard); // 'coordinates' changed to 'coordinate'
+        updateBoardDisplay(computerBoard, 'opponent');
         turn = 'computer';
 
-        setTimeout(computerTurn, 500); // Timeout set for 50ms
+
+        setTimeout(computerTurn, 300); // Timeout set for 300ms
     }
 
     function computerTurn() {
         computer.attack();
 
-        updateBoardDisplay(playerBoard);
+        updateBoardDisplay(playerBoard, 'player');
 
-        // Rebinding click events for the player's next turn
         document.querySelectorAll('.opponent-square').forEach(square => {
             square.addEventListener('click', makeTurn);
         });
-        turn = 'player'; // Ensure consistent use of case
+
+        turn = 'player';
     }
 
-    function updateBoardDisplay(board) {
+    function updateBoardDisplay(board, user) {
         for (let ship of board.main) {
             for (let i = 0; i < ship.hits.length; i++) {
-                if(ship.hits[i]) {
-                    let square = findSquare(ship.coordinates[i], 'opponent')
-                    square.classList.add('hit')
+                if (ship.hits[i]) {
+                    let square = findSquare(ship.coordinates[i], user);
+                    square.classList.add('hit');
                 }
             }
         }
-        if(board.allSunk()) return alert('winner')
-    }
-}
 
-// Ensure this function is actually used or remove it
-function getHits(main) {
-    let hits = []
+        if(board.allSunk()) return alert(`${user[0].toUpperCase() + user.substring(1)} has lost! All ships have been sunk.`)
 
-    main.forEach(ship => {
-        const hitIndex = ship.hits
-        const coordinates = ship.coordinates
-
-        for (let i = 0; i < ship.hits.length; i++) {
-            if (hitIndex[i] == true) {
-                let square = findSquare(coordinates[i])
-                hits.push(square)
+        for (let shot of board.shots) {
+            let square = findSquare(shot, user)
+            if (!square.classList.contains('hit')) {
+                square.classList.add('miss')
             }
         }
-    })
-    hits.forEach(hit => hit.classList.add('hit'))
-    return hits
+    }
 }
-

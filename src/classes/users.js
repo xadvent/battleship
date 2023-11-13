@@ -13,17 +13,27 @@ export function Player(otherBoard) {
 }
 
 export function Computer(otherBoard) {
-    let previousAttacks = new Set;
+    let previousAttacks = [];
 
+    const arraysEqual = (a, b) => {
+        if (a.length !== b.length) return false;
+        for (let i = 0; i < a.length; ++i) {
+            if (a[i] !== b[i]) return false;
+        }
+        return true;
+    };
+    
     const attack = () => {
         let coordinates = [];
-        while (previousAttacks.has(coordinates) || coordinates.length == 0) {
-            coordinates = [Math.floor(Math.random() * 10), Math.floor(Math.random() * 10)];
+        while (coordinates.length == 0 || previousAttacks.some(prev => arraysEqual(prev, coordinates))) {
+            coordinates = [1 + Math.floor(Math.random() * 10), 1 + Math.floor(Math.random() * 10)];
         }
-
+    
         otherBoard.receiveAttack(coordinates);
-        previousAttacks.add(coordinates);
-    }
+        previousAttacks.push(coordinates);
+        coordinates = [];
+    };
+    
 
     return {
         attack
