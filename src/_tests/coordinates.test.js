@@ -46,7 +46,7 @@ describe('getCoordinatesFromClassList', () => {
 
 describe('returnSquare', () => {
     test('return square at ([3,9])', () => {
-        let square = findSquare([3, 9]);
+        let square = findSquare([3, 9], 'opponent');
         square = getCoordinatesFromClassList(square.classList);
         expect(square).toEqual(getCoordinatesFromClassList(['r3', 'c9']));
     })

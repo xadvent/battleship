@@ -15,6 +15,7 @@ export default class GameBoard {
     receiveAttack(coordinates) {
         for (let ship of this.main) {
             if (ship.hit(coordinates)) {
+                alert('hit')
                 break;
             }
         }
@@ -35,7 +36,7 @@ function fullShipCoordinates(start, end) {
     let coordinates = []
 
     const [x1, y1] = start;
-    const [x2, y2] = end;
+    const [x2, y2] = [end[0], end[1]];
 
     const dx = Math.abs(x2 - x1);
     const dy = Math.abs(y2 - y1);

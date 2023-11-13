@@ -1,7 +1,11 @@
 export function Player(otherBoard) {
+    const attacked = []
+
     const attack = (coordinates) => {
         otherBoard.receiveAttack(coordinates)
+        attacked.push(coordinates)
     }
+
 
     return {
         attack

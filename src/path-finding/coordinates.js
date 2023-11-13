@@ -4,7 +4,6 @@ export function getCoordinatesFromClassList(lst) {
 }
 
 export function findSquare(arr, user) {
-        user = user || false
         const [x, y] = [arr[0], arr[1]];
         let result;
         if (user) {
@@ -26,5 +25,9 @@ export function addPlayerListeners() {
 function makeTurn(event) {
         const coordinate = getCoordinatesFromClassList(event.target.classList);
 
-        if (!verifySquare(event.target.classList)) return null
+        document.querySelectorAll('.opponent-square').forEach(square => {
+                square.removeEventListener('click', makeTurn)
+        })
+
+        return coordinate
 }

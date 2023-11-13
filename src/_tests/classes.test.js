@@ -94,9 +94,9 @@ describe('Gameboard.js', () => {
         expect(newBoard.allSunk()).toBe(true)
     })
 
-    test('allSunk == false: no ships sunk', () =>{
+    test('allSunk == false: no ships sunk', () => {
         const newBoard = new GameBoard()
-        newBoard.placeShip([1,1], [1,2]);
+        newBoard.placeShip([1, 1], [1, 2]);
         expect(newBoard.allSunk()).toBe(false)
     })
 })
@@ -130,6 +130,10 @@ describe('Computer', () => {
         for (let x = 0; x < 98; x++) computer.attack()
 
         // Attacking every single square on the board
+        expect(board.shots).toHaveLength(100)
+    })
+
+    test('PlayerBoard should show correct number of shots', () => {
         expect(board.shots).toHaveLength(100)
     })
 })
