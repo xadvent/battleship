@@ -1,11 +1,10 @@
 export function Player(otherBoard) {
-    const attacked = []
+    const attacked = [];
 
     const attack = (coordinates) => {
-        otherBoard.receiveAttack(coordinates)
-        attacked.push(coordinates)
+        otherBoard.receiveAttack(coordinates);
+        attacked.push(coordinates);
     }
-
 
     return {
         attack

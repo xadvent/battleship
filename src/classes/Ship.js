@@ -8,6 +8,7 @@ export default class Ship {
         const index = this.coordinates.findIndex(coord => coord[0] === coordinate[0] && coord[1] === coordinate[1]);
         if(index > -1){
             this.hits[index] = true;
+            return true
         }
     }
 

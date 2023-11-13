@@ -1,19 +1,21 @@
 import { Player, Computer } from "./classes/users";
 import GameBoard from "./classes/Gameboard";
-import { findSquare, getCoordinatesFromClassList } from "./path-finding/coordinates";
+import { getCoordinatesFromClassList } from "./path-finding/coordinates";
 
 export default () => {
-    const playerBoard = new GameBoard();
-    const computerBoard = new GameBoard();
+    const displayTurn = document.querySelector('#turn')
+
+    const playerBoard = new GameBoard('player');
+    const computerBoard = new GameBoard('opponent');
 
     const player = Player(computerBoard);
     const computer = Computer(playerBoard);
 
-    // Temporary placements to test
     playerBoard.placeShip([4, 4], [1, 4]);
     computerBoard.placeShip([1, 1], [1, 2]);
 
     let turn = 'player';
+    displayTurn.textContent = 'Whenever you\'re ready click a square.'
 
     document.querySelectorAll('.opponent-square').forEach(square => {
         square.addEventListener('click', makeTurn);
@@ -29,42 +31,22 @@ export default () => {
             square.removeEventListener('click', makeTurn);
         });
 
-        updateBoardDisplay(computerBoard, 'opponent');
+        computerBoard.displayHits()
         turn = 'computer';
+        displayTurn.textContent = "Opponent's Turn..."
 
-
-        setTimeout(computerTurn, 300); // Timeout set for 300ms
+        setTimeout(computerTurn, 1000); 
     }
 
     function computerTurn() {
         computer.attack();
-
-        updateBoardDisplay(playerBoard, 'player');
+        playerBoard.displayHits()
 
         document.querySelectorAll('.opponent-square').forEach(square => {
             square.addEventListener('click', makeTurn);
         });
 
         turn = 'player';
-    }
-
-    function updateBoardDisplay(board, user) {
-        for (let ship of board.main) {
-            for (let i = 0; i < ship.hits.length; i++) {
-                if (ship.hits[i]) {
-                    let square = findSquare(ship.coordinates[i], user);
-                    square.classList.add('hit');
-                }
-            }
-        }
-
-        if(board.allSunk()) return alert(`${user[0].toUpperCase() + user.substring(1)} has lost! All ships have been sunk.`)
-
-        for (let shot of board.shots) {
-            let square = findSquare(shot, user)
-            if (!square.classList.contains('hit')) {
-                square.classList.add('miss')
-            }
-        }
+        displayTurn.textContent = 'Your turn!' 
     }
 }
