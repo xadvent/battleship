@@ -8,27 +8,34 @@
 <script defer src="main.js"></script></head>
 
 <body>
-    <div id="header">Not sure if i'll keep / use a header</div>
-    <h1 id="turn">Placeholder</h1>
-    <div id="container">
-        <div id="player"></div>
-        <div id="opponent"></div>
+    <div id="gameContainer">
+        <h1 id="turn">Placeholder</h1>
+        <div id="container">
+            <div class="boxP">
+                <p>You</p>
+                <div id="player"></div>
+            </div>
+            <div class="boxO">
+                <p>Opponent</p>
+                <div id="opponent"></div>
+            </div>
+        </div>
+        <div id="legend">
+            <div class="legend-info">
+                <img id="empty-legend" src="" alt="symbol for empty">
+                <p class="legend-label">Empty waters</p>
+            </div>
+            <div class="legend-info">
+                <img id="hit-legend" src="" alt="symbol for hit">
+                <p class="legend-label">Ship hit!</p>
+            </div>
+            <div class="legend-info">
+                <img id="killed-legend" src="" alt="symbol for killed">
+                <p class="legend-label">Ship sunk!</p>
+            </div>
+        </div>
+        <div id="footer"></div>
     </div>
-    <div id="legend">
-        <div class="legend-info">
-            <img id="empty-legend" src="" alt="symbol for empty">
-            <p class="legend-label">Empty waters</p>
-        </div>
-        <div class="legend-info">
-            <img id="hit-legend" src="" alt="symbol for hit">
-            <p class="legend-label">Ship hit!</p>
-        </div>
-        <div class="legend-info">
-            <img id="killed-legend" src="" alt="symbol for killed">
-            <p class="legend-label">Ship sunk!</p>
-        </div>
-    </div>
-    <div id="footer"></div>
 </body>
 
 </html>
