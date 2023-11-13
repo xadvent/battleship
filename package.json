@@ -6,6 +6,7 @@
   "scripts": {
     "test": "jest ",
     "testwatch": "jest --watch *.js",
+    "deploy": "git subtree push --prefix dist origin gh-pages",
     "watch": "webpack --watch",
     "build": "webpack"
   },
