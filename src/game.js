@@ -31,23 +31,35 @@ export default () => {
             square.removeEventListener('click', makeTurn);
         });
 
-        computerBoard.displayHits()
+        computerBoard.displayHits();
 
         turn = 'computer';
-        displayTurn.textContent = "Opponent's Turn..."
+        displayTurn.textContent = "Opponent's Turn.";
 
-        setTimeout(computerTurn, 1000); 
+        setTimeout(computerTurn, 1500);
+
+        const addDots = setInterval(() => {
+            displayTurn.textContent += '.'
+        }, 550);
+
+        setTimeout(() => {
+            clearInterval(addDots);
+        }, 1500);
     }
 
     function computerTurn() {
         computer.attack();
-        playerBoard.displayHits()
+        playerBoard.displayHits();
 
         document.querySelectorAll('.opponent-square').forEach(square => {
             square.addEventListener('click', makeTurn);
         });
 
         turn = 'player';
-        displayTurn.textContent = 'Your turn!' 
+        displayTurn.textContent = 'Your turn!';
     }
+}
+
+function displayOpponentTurn(){
+    const displayTurn = document.querySelector('#turn');
 }
