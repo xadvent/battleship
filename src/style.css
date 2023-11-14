@@ -104,12 +104,15 @@ body,
 #player>div,
 #opponent>div {
     background-color: var(--sea-colour);
-
+    transition: 0.2s all ease-in-out;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 #player>div:hover,
 #opponent>div:hover {
-    background-color: rgb(149, 175, 216);
+    background-color: rgb(220, 221, 223);
     scale: 1.08;
 }
 

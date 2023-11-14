@@ -11,7 +11,8 @@ export default () => {
     const player = Player(computerBoard);
     const computer = Computer(playerBoard);
 
-    playerBoard.placeShip([4, 4], [1, 4]);
+    playerBoard.placeShip([4, 4], [2, 4]);
+    playerBoard.placeShip([7,6], [7,7])
     computerBoard.placeShip([1, 1], [1, 2]);
 
     let turn = 'player';
@@ -23,7 +24,6 @@ export default () => {
 
     function makeTurn(event) {
         if (turn !== 'player') return;
-
         const coordinate = getCoordinatesFromClassList(event.target.classList);
         player.attack(coordinate);
 
@@ -33,6 +33,7 @@ export default () => {
 
         computerBoard.displayHits();
 
+        
         turn = 'computer';
         displayTurn.textContent = "Opponent's Turn.";
 
@@ -58,8 +59,4 @@ export default () => {
         turn = 'player';
         displayTurn.textContent = 'Your turn!';
     }
-}
-
-function displayOpponentTurn(){
-    const displayTurn = document.querySelector('#turn');
 }

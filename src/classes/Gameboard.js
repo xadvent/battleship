@@ -1,5 +1,7 @@
 import Ship from "./Ship";
 import { findSquare } from "../path-finding/coordinates";
+import Hit from '../img/hit.svg'
+import Killed from '../img/killed.svg'
 
 export default class GameBoard {
     constructor(user) {
@@ -35,14 +37,33 @@ export default class GameBoard {
             for (let i = 0; i < ship.hits.length; i++) {
                 if (ship.hits[i]) {
                     let square = findSquare(ship.coordinates[i], this.user);
+                    square.innerHTML = ''
                     square.classList.add('hit');
+
+                    let hit = new Image()
+                    hit.src = Hit
+                    square.appendChild(hit)
                 }
+            }
+            if (ship.isSunk()) {
+                ship.coordinates.forEach(coordinate => {
+                    let square = findSquare(coordinate, this.user)
+                    square.innerHTML = ''
+
+                    let killed = new Image()
+                    killed.src = Killed
+                    killed.className = 'killed'
+
+                    square.appendChild(killed)
+                })
             }
         }
 
         for (let shot of this.shots) {
             let square = findSquare(shot, this.user)
-            if (!square.classList.contains('hit')) square.classList.add('miss')
+            if (!square.classList.contains('hit') && !square.classList.contains('miss')) {
+                square.classList.add('miss')
+            } 
         }
 
         if (this.allSunk()) {

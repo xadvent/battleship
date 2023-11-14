@@ -1,4 +1,3 @@
-import Empty from '../img/empty.svg'
 import Hit from '../img/hit.svg'
 import Killed from '../img/killed.svg'
 
@@ -31,11 +30,9 @@ export function placeShipsRandomly() {
 }
 
 function loadLegend() {
-    const emptyLegend = document.querySelector('#empty-legend');
     const hitLegend = document.querySelector('#hit-legend');
     const killedLegend = document.querySelector('#killed-legend');
 
-    emptyLegend.src = Empty;
     hitLegend.src = Hit;
     killedLegend.src = Killed;
 }
