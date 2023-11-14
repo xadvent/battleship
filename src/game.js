@@ -14,6 +14,7 @@ export default () => {
     playerBoard.placeShip([4, 4], [2, 4]);
     playerBoard.placeShip([7,6], [7,7])
     computerBoard.placeShip([1, 1], [1, 2]);
+    computerBoard.placeShip([5,3], [3,3])
 
     let turn = 'player';
     displayTurn.textContent = 'Whenever you\'re ready click a square.'

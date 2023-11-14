@@ -1,5 +1,6 @@
 import Hit from '../img/hit.svg'
 import Killed from '../img/killed.svg'
+import GH from '../img/github-mark.svg'
 
 function createBoards() {
     const playerBoard = document.querySelector('#player');
@@ -25,10 +26,6 @@ function createBoards() {
     })
 }
 
-export function placeShipsRandomly() {
-    // This function will place ships randomly on the board on each load.
-}
-
 function loadLegend() {
     const hitLegend = document.querySelector('#hit-legend');
     const killedLegend = document.querySelector('#killed-legend');
@@ -37,7 +34,18 @@ function loadLegend() {
     killedLegend.src = Killed;
 }
 
+function addGHLogo() {
+    const gh = new Image();
+    gh.src = GH;
+    const lnk = document.createElement('a')
+    lnk.href = 'https://github.com/xadvent/battleship'
+    lnk.id = 'github'
+    lnk.appendChild(gh)
+    document.querySelector('#header').appendChild(lnk)
+}
+
 export default () => {
     createBoards();
     loadLegend();
+    addGHLogo();
 }
