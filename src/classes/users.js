@@ -32,7 +32,6 @@ export function Computer(otherBoard) {
         previousAttacks.push(coordinates);
         coordinates = [];
     };
-    
 
     return {
         attack

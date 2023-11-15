@@ -12,52 +12,50 @@ export default () => {
     const computer = Computer(playerBoard);
 
     playerBoard.placeShip([4, 4], [2, 4]);
-    playerBoard.placeShip([7,6], [7,7])
+    playerBoard.placeShip([7, 6], [7, 7])
     computerBoard.placeShip([1, 1], [1, 2]);
-    computerBoard.placeShip([5,3], [3,3])
+    computerBoard.placeShip([5, 3], [3, 3])
 
     let turn = 'player';
     displayTurn.textContent = 'Whenever you\'re ready click a square.'
 
-    document.querySelectorAll('.opponent-square').forEach(square => {
-        square.addEventListener('click', makeTurn);
-    });
+    document.querySelectorAll('.opponent-square').forEach(square => square.addEventListener('click', makeTurn))
 
     function makeTurn(event) {
         if (turn !== 'player') return;
         const coordinate = getCoordinatesFromClassList(event.target.classList);
         player.attack(coordinate);
 
-        document.querySelectorAll('.opponent-square').forEach(square => {
-            square.removeEventListener('click', makeTurn);
-        });
+        document.querySelectorAll('.opponent-square').forEach(square => square.removeEventListener('click', makeTurn));
 
-        computerBoard.displayHits();
+        let check = computerBoard.displayHits();
+        if (check.status) {
+            alert(check.message)
+            return
+        } else {
+            turn = 'computer';
+            displayTurn.textContent = "Opponent's Turn.";
+            setTimeout(computerTurn, 1500);
 
-        
-        turn = 'computer';
-        displayTurn.textContent = "Opponent's Turn.";
-
-        setTimeout(computerTurn, 1500);
-
-        const addDots = setInterval(() => {
-            displayTurn.textContent += '.'
-        }, 550);
-
-        setTimeout(() => {
-            clearInterval(addDots);
-        }, 1500);
+            const addDots = setInterval(() => {
+                displayTurn.textContent += '.'
+            }, 550);
+            setTimeout(() => {
+                clearInterval(addDots);
+            }, 1500);
+        }
     }
 
     function computerTurn() {
         computer.attack();
-        playerBoard.displayHits();
-
-        document.querySelectorAll('.opponent-square').forEach(square => {
-            square.addEventListener('click', makeTurn);
-        });
-
+        let check = playerBoard.displayHits();
+        if (check.status){
+            alert(check.message);
+            return
+        } else {
+        document.querySelectorAll('.opponent-square').forEach(square => square.addEventListener('click', makeTurn));
         turn = 'player';
         displayTurn.textContent = 'Your turn!';
+        }
     }
 }

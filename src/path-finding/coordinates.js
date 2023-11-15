@@ -5,29 +5,6 @@ export function getCoordinatesFromClassList(lst) {
 
 export function findSquare(arr, user) {
         const [x, y] = [arr[0], arr[1]];
-        let result;
-        if (user) {
-                result = document.querySelector(`#${user}>.r${x}.c${y}`);
-        } else {
-                result = document.querySelector(`.r${x}.c${y}`);
-        }
+        let result = document.querySelector(`#${user}>.r${x}.c${y}`)
         return result || null;
-}
-
-export function addPlayerListeners() {
-        const allOpponentSquares = document.querySelectorAll('.opponent-square');
-        allOpponentSquares.forEach(square => {
-                square.addEventListener('click', makeTurn);
-        })
-}
-
-// Placeholder function
-function makeTurn(event) {
-        const coordinate = getCoordinatesFromClassList(event.target.classList);
-
-        document.querySelectorAll('.opponent-square').forEach(square => {
-                square.removeEventListener('click', makeTurn)
-        })
-
-        return coordinate
 }
