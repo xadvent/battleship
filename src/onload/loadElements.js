@@ -2,7 +2,7 @@ import Hit from '../img/hit.svg';
 import Killed from '../img/killed.svg';
 import GH from '../img/github-mark.svg';
 
-function createBoards() {
+export function createBoards() {
     const playerBoard = document.querySelector('#player');
     const opponentBoard = document.querySelector('#opponent');
 

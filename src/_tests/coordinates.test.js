@@ -3,7 +3,7 @@
  */
 
 import { getCoordinatesFromClassList, findSquare} from "../path-finding/coordinates"
-import loadElements from "../onload/loadElements"
+import { createBoards } from "../onload/loadElements";
 
 beforeAll(() => {
     document.body.innerHTML =
@@ -26,7 +26,7 @@ beforeAll(() => {
         </div>
     </div>`
 
-    loadElements();
+    createBoards();
 })
 
 describe('getCoordinatesFromClassList', () => {
@@ -45,7 +45,7 @@ describe('getCoordinatesFromClassList', () => {
 })
 
 describe('returnSquare', () => {
-    test('return square at ([3,9])', () => {
+    test('return square at ([3,9], "opponent")', () => {
         let square = findSquare([3, 9], 'opponent');
         square = getCoordinatesFromClassList(square.classList);
         expect(square).toEqual(getCoordinatesFromClassList(['r3', 'c9']));

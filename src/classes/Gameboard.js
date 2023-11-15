@@ -25,7 +25,6 @@ export default class GameBoard {
     receiveAttack(coordinates) {
         for (let ship of this.main) {
             if (ship.hit(coordinates)) {
-                console.log('hit')
                 break;
             }
         }
