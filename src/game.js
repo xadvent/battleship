@@ -25,12 +25,12 @@ export default () => {
         if (turn !== 'player') return;
         const coordinate = getCoordinatesFromClassList(event.target.classList);
         player.attack(coordinate);
-
+        
         document.querySelectorAll('.opponent-square').forEach(square => square.removeEventListener('click', makeTurn));
 
         let check = computerBoard.displayHits();
         if (check.status) {
-            alert(check.message)
+            displayTurn.textContent = check.message
             return
         } else {
             turn = 'computer';
@@ -50,7 +50,7 @@ export default () => {
         computer.attack();
         let check = playerBoard.displayHits();
         if (check.status){
-            alert(check.message);
+            displayTurn.textContent = check.message
             return
         } else {
         document.querySelectorAll('.opponent-square').forEach(square => square.addEventListener('click', makeTurn));
