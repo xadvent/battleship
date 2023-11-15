@@ -1,6 +1,19 @@
 import { Player, Computer } from "./classes/users";
 import GameBoard from "./classes/Gameboard";
 import { getCoordinatesFromClassList } from "./path-finding/coordinates";
+import Song from './sounds/epic.mp3'
+
+const epic = new Audio(Song)
+window.addEventListener('click', song)
+function song() {
+    epic.play();
+    epic.volume = '0.5';
+}
+
+epic.addEventListener('ended', () => {
+    epic.currentTime = 0;
+    epic.play();
+}, false)
 
 export default () => {
     const displayTurn = document.querySelector('#turn')
@@ -30,7 +43,7 @@ export default () => {
 
         let check = computerBoard.displayHits();
         if (check.status) {
-            displayTurn.textContent = check.message
+            displayTurn.textContent = check.message();
             return
         } else {
             turn = 'computer';
@@ -50,7 +63,7 @@ export default () => {
         computer.attack();
         let check = playerBoard.displayHits();
         if (check.status){
-            displayTurn.textContent = check.message
+            displayTurn.textContent = check.message()
             return
         } else {
         document.querySelectorAll('.opponent-square').forEach(square => square.addEventListener('click', makeTurn));

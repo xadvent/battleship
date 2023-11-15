@@ -68,7 +68,10 @@ export default class GameBoard {
         if (this.allSunk()) {
             return {
                 status: true,
-                message: this.user[0].toUpperCase() + this.user.substring(1) + ' has lost! All their ships have been sunk.'
+                message: () => {
+                    return this.user == 'player' ? 'You lost. All your ships have been sunk.'
+                    : 'You won! All enemy ships have been sunk.'
+                }
             }
         }
         return {
