@@ -230,6 +230,56 @@ a>img:hover {
     background-color: var(--player-ship);
 }
 
-.hidden {
+#gameContainer.hidden {
     display: none;
+}
+
+#start-screen {
+    width: 100vw;
+    height: 100vh;
+    display: relative;
+    z-index: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 100px;
+}
+
+.title>h1 {
+    margin: 0px;
+    animation: slide-down 1.5s ease;
+}
+
+#main-title {
+    font-size: 50px;
+    position: relative;
+    color: var(--sea-colour);
+}
+
+#header {
+    display: relative;
+    z-index: 2;
+}
+
+#start {
+    width: 150px;
+    height: 50px;
+    background-color: var(--hit);
+    font-weight: 500;
+    font-size: 35px;
+    letter-spacing: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 10px;
+    border: none;
+    animation: slide-up 1.5s ease;
+    transition: background-color 0.5s ease, transform 0.5s ease, color 0.5s ease;
+}
+
+#start:hover {
+    transform: scale(0.98);
+    background-color: var(--miss);
+    color: var(--hit);
 }

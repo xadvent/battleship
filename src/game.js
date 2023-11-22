@@ -4,7 +4,7 @@ import { getCoordinatesFromClassList } from "./path-finding/coordinates";
 import Song from './sounds/epic.mp3'
 
 const epic = new Audio(Song)
-window.addEventListener('click', song)
+// window.addEventListener('click', song)
 function song() {
     epic.play();
     epic.volume = '0.5';
