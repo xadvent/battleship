@@ -12,7 +12,7 @@
     color: white;
 }
 
-@keyframes slide-right{
+@keyframes slide-right {
     0% {
         opacity: 0;
         transform: translateX(-40px);
@@ -24,7 +24,7 @@
     }
 }
 
-@keyframes slide-left{
+@keyframes slide-left {
     0% {
         opacity: 0;
         transform: translateX(40px);
@@ -36,7 +36,7 @@
     }
 }
 
-@keyframes slide-down{
+@keyframes slide-down {
     0% {
         opacity: 0;
         transform: translateY(-20px);
@@ -48,7 +48,7 @@
     }
 }
 
-@keyframes slide-up{
+@keyframes slide-up {
     0% {
         opacity: 0;
         transform: translateY(20px);
@@ -90,7 +90,7 @@ body,
 a>img {
     width: 50px;
     height: 50px;
-    transition: all 0.7s ;
+    transition: all 0.7s;
 }
 
 a>img:hover {
@@ -103,10 +103,11 @@ a>img:hover {
     top: -10px;
 }
 
-.boxP{
+.boxP {
     animation: slide-right 1.5s ease-in-out;
 }
-.boxO{
+
+.boxO {
     animation: slide-left 1.5s ease-in-out;
 }
 
@@ -114,7 +115,8 @@ a>img:hover {
     animation: slide-up 1.5s ease-in-out;
 }
 
-#header, #turn {
+#header,
+#turn {
     animation: slide-down 1.5s ease-in-out;
 }
 
@@ -123,6 +125,7 @@ a>img:hover {
     width: 100%;
     display: grid;
     grid-template-columns: 50px 1fr 1fr 50px;
+    gap: 10px;
 }
 
 .boxP {
@@ -262,7 +265,7 @@ a>img:hover {
     z-index: 2;
 }
 
-#start {
+#start, #options {
     width: 150px;
     height: 50px;
     background-color: var(--hit);
@@ -278,8 +281,32 @@ a>img:hover {
     transition: background-color 0.5s ease, transform 0.5s ease, color 0.5s ease;
 }
 
-#start:hover {
+.button-container > #options {
+    width: 200px;
+}
+
+#start:hover,
+#options:hover {
     transform: scale(0.98);
     background-color: var(--miss);
     color: var(--hit);
+}
+
+#start:active,
+#options:active{
+    transform: scale(0.90);
+}
+
+.button-container {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    letter-spacing: normal;
+    align-items: center;
+}
+
+#end-modal {
+    animation: slide-down 1s ease;    
+    justify-self: center;
+    align-self: center;
 }

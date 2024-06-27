@@ -7,7 +7,7 @@ const epic = new Audio(Song)
 // window.addEventListener('click', song)
 function song() {
     epic.play();
-    epic.volume = '0.5';
+    epic.volume = '0.3';
 }
 
 epic.addEventListener('ended', () => {
