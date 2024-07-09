@@ -1,14 +1,25 @@
 :root {
-    --sea-border: #011E36;
+    --sea-border: #011e36;
     --background: #222222;
-    --sea-colour: #31A8FF;
+    --sea-colour: #31a8ff;
     --hit: red;
-    --miss: #454E57;
+    --miss: #454e57;
     --player-ship: aqua;
 }
 
 * {
-    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    font-family:
+        system-ui,
+        -apple-system,
+        BlinkMacSystemFont,
+        "Segoe UI",
+        Roboto,
+        Oxygen,
+        Ubuntu,
+        Cantarell,
+        "Open Sans",
+        "Helvetica Neue",
+        sans-serif;
     color: white;
 }
 
@@ -72,7 +83,7 @@ body,
     display: flex;
     flex-direction: column;
     align-items: center;
-    height: 100vh;
+    min-height: 100vh;
     width: 100vw;
     gap: 20px;
 }
@@ -162,7 +173,6 @@ a>img:hover {
     margin-top: -10px;
 }
 
-
 .legend-info {
     height: 60px;
     display: grid;
@@ -214,7 +224,6 @@ a>img:hover {
     scale: 0.98;
 }
 
-
 #player>.player-ship.hit,
 #opponent>.hit,
 #player>.player-ship.hit:hover,
@@ -265,7 +274,8 @@ a>img:hover {
     z-index: 2;
 }
 
-#start, #options {
+#start,
+#options {
     width: 150px;
     height: 50px;
     background-color: var(--hit);
@@ -278,10 +288,13 @@ a>img:hover {
     border-radius: 10px;
     border: none;
     animation: slide-up 1.5s ease;
-    transition: background-color 0.5s ease, transform 0.5s ease, color 0.5s ease;
+    transition:
+        background-color 0.5s ease,
+        transform 0.5s ease,
+        color 0.5s ease;
 }
 
-.button-container > #options {
+.button-container>#options {
     width: 200px;
 }
 
@@ -293,8 +306,8 @@ a>img:hover {
 }
 
 #start:active,
-#options:active{
-    transform: scale(0.90);
+#options:active {
+    transform: scale(0.9);
 }
 
 .button-container {
@@ -306,7 +319,78 @@ a>img:hover {
 }
 
 #end-modal {
-    animation: slide-down 1s ease;    
+    animation: slide-down 1s ease;
     justify-self: center;
     align-self: center;
+}
+
+@media (max-width: 1024px) {
+    #player,
+    #opponent {
+        max-width: 430px;
+        max-height: 430px;
+        min-width: 430px;
+        min-height: 430px;
+    }
+}
+
+@media (max-width: 768px) {
+    #container {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .boxO {
+        animation: slide-up 1.5s ease;
+    }
+
+    .boxP {
+        animation: slide-down 1.5s ease;
+    }
+}
+
+@media (max-width: 450px) {
+    #turn {
+        margin-top: 25px;
+        font-size: 20px;
+    }
+
+    #container {
+        margin-top: 15px;
+    }
+
+    #player,
+    #opponent {
+        max-width: 350px;
+        max-height: 350px;
+        min-width: 350px;
+        min-height: 350px;
+    }
+
+    #header>a>img {
+        height: 25px;
+        width: 25px;
+    }
+}
+
+@media (max-width: 400px) {
+    #player,
+    #opponent {
+        max-width: 300px;
+        max-height: 300px;
+        min-width: 300px;
+        min-height: 300px;
+    }
+
+    .legend-info {
+        height: 50px;
+        gap: 5px;
+    }
+
+    .legend-info>img {
+        height: 40px;
+        width: auto;
+        background-color: red;
+        border-radius: 4.5px;
+    }
 }
