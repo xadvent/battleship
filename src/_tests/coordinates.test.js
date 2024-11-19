@@ -11,7 +11,6 @@ import { createBoards } from "../onload/loadElements";
 beforeAll(() => {
 	document.body.innerHTML = `<div id="container">
         <div id="player"></div>
-
         <div id="opponent"></div>
     </div>
     <div id="legend">
